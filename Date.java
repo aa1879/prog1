@@ -25,10 +25,37 @@ public class Date
       this.month = d.month;
       this.year = d.year;
    }      
+
+   //function to check if a year is leap
+   public boolean isLeap(int year){
+      if(year%4==0){
+         if(year%100==0){
+            if(year%400==0)
+               return true;
+            return false;
+         }
+         return true;
+      }
+      return false;
+   }
    
    public boolean isValid()
    {
+       if(this.month<1||this.month>12)
+         return false;
+
+       if(this.day>31)
+         return false;
+      
+       if(this.month%2==1){
+          return true;
+       }
+
+       if(this.day>30)
+         return false;
+
        
+
    }
    
    @Override
