@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 import com.sun.jdi.Field;
 
 /**
@@ -85,12 +87,16 @@ public class Date
    @Override
    public boolean equals(Object obj)
    {
-       Field[] fields = obj.class.getFields();
-       for(int i = 0; i<fields.length;i++){
-          if(fields[i].get(obj)!=fields[i].get(this))
-            return false;
-       }
+      if(obj==this)
+         return true;
+      
+      if(!(obj instanceof Date)){
+         return false;
+      }
+      Date d = (Date) obj;
+      return (d.day==this.day&&d.month==this.month&&d.year==this.year);
    }  
+
 }
 
 
