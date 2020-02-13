@@ -1,7 +1,8 @@
 /**
  
- @author  
+ @author Suraj Budhathoki  
  */
+
 public class TeamMember 
 {
    private String name;
@@ -9,27 +10,44 @@ public class TeamMember
    
    public TeamMember(String nm, Date date)
    {
-       
+      name=nm;
+      startDate=date;
    }
    
    public Date getStartDate()
    {
+	   return startDate;
       
+   }
+   
+   // added later on to encapsulate var -->name
+   public String getName() {
+	   return name;
    }
    
    public boolean equals(Object obj)
    {
-      //name and startDate must be the same
+	   if(!(obj instanceof TeamMember)){
+	         return false;
+	      }
+	   
+	   TeamMember t = (TeamMember)obj;
+       return (t.name==this.name&&t.startDate==this.startDate);
    }  
    
    public String toString()
    {
        //name + " " + startDate;
+	  return getName() +" " + getStartDate();
    }
 
    public static void main(String [] args)
+   
    {
-      //testbed main; you must include test cases that exercise 
-      //the constructor and all methods in this class.
+	   //testing the TeamMember class
+	   Date d1 = new Date ("11/27/2011");
+	
+      TeamMember team = new TeamMember ("Suraj", d1 );
+      team.toString();
    }
 }
