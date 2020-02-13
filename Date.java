@@ -17,9 +17,10 @@ public class Date
       //use StringTokenizer to parse the String and create a Date object   
       //don't really know what's up here yet
       String [] dateSplit = d.split("/");
-      this.month = dateSplit[0];
-      this.day = dateSplit[1];
-      this.year = dateSplit[2];
+      Date newDate = new Date();
+      newDate.day = dateSplit[1];
+      newDate.month = dateSplit[0];
+      newDate.year = dateSplit[2];
    }
    
    public Date(Date d)
