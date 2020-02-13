@@ -18,9 +18,10 @@ public class Date
       //don't really know what's up here yet
       String [] dateSplit = d.split("/");
       Date newDate = new Date();
-      newDate.day = dateSplit[1];
-      newDate.month = dateSplit[0];
-      newDate.year = dateSplit[2];
+      newDate.day = Integer.parseInt(dateSplit[1]);
+      newDate.month = Integer.parseInt(dateSplit[0]);
+      newDate.year = Integer.parseInt(dateSplit[2]);
+      Date(newDate);
    }
    
    public Date(Date d)
