@@ -27,12 +27,15 @@ public class TeamMember
    
    public boolean equals(Object obj)
    {
+      if(obj==this)
+         return true;
+         
 	   if(!(obj instanceof TeamMember)){
 	         return false;
 	      }
 	   
 	   TeamMember t = (TeamMember)obj;
-       return (t.name==this.name&&t.startDate==this.startDate);
+       return (t.name.equals(this.name)&&t.startDate.equals(this.startDate));
    }  
    
    public String toString()
@@ -48,6 +51,6 @@ public class TeamMember
 	   Date d1 = new Date ("11/27/2011");
 	
       TeamMember team = new TeamMember ("Suraj", d1 );
-      team.toString();
+      System.out.println(team.toString());
    }
 }
