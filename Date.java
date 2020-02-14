@@ -17,11 +17,10 @@ public class Date
       //use StringTokenizer to parse the String and create a Date object   
       //don't really know what's up here yet
       String [] dateSplit = d.split("/");
-      Date newDate = null;
-      newDate.day = Integer.parseInt(dateSplit[1]);
-      newDate.month = Integer.parseInt(dateSplit[0]);
-      newDate.year = Integer.parseInt(dateSplit[2]);
-     
+      this.day = Integer.parseInt(dateSplit[1]);
+      this.month = Integer.parseInt(dateSplit[0]);
+      this.year = Integer.parseInt(dateSplit[2]);
+      
    }
    
    public Date(Date d)
@@ -99,6 +98,16 @@ public class Date
       return (d.day==this.day&&d.month==this.month&&d.year==this.year);
    }  
 
+  
+
+   public static void main(String[] args){
+      Date testDate = new Date("02/29/2024");
+      System.out.println(testDate.isLeap());
+      
+   }
+
 }
+
+
 
 
