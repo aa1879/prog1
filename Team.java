@@ -27,8 +27,8 @@ public class Team
    {
 	   int mLocation=-1;
 	   
-	   for(int i=0;i<team.length;i++) {
-		   if(team[i]==m) {
+	   for(int i=0;i<numMembers;i++) {
+		   if(team[i].equals(m)) {
 			   mLocation=i;
 			   break;
 		   }
@@ -46,6 +46,7 @@ public class Team
    {
 	   TeamMember [] growTeam = new TeamMember[this.team.length+this.GROW_SIZE];
 	   
+	   //perhaps need numMembers here
 	   for(int i=0;i<this.team.length;i++) {
 		   growTeam[i]=this.team[i];
 	   }
@@ -59,7 +60,8 @@ public class Team
     */
    public boolean isEmpty()
    {
-       return (team.length==0);
+	   //System.out.println(team.numMembers);
+       return (numMembers==0);
    }
    
    public void add(TeamMember m)
@@ -75,9 +77,10 @@ public class Team
 	        	team[numMembers]=m;
 	        	numMembers++;
 	      
-	        } 
+			} 
+			System.out.println(m.toString() +" " +" has joined the team.");
 	   }else { // member already exists on the team
-		   System.out.println(m.toString() +" " +" is already on the team");
+		   System.out.println(m.toString() +" " +" is already on the team.");
 	   }
        
    }
@@ -90,12 +93,13 @@ public class Team
 		   
 		   removeMemberAtIndex(mLocation);
 		   
-		   System.out.println(m.toString()+ " "+"has left the team");
+		   System.out.println(m.toString()+ " "+"has left the team.");
+		   numMembers--;
 		   
 		   return true;
 		   
 	   }else { //member does not exists on the team
-		  System.out.println(m.toString()+ " "+"is not a team member");
+		  System.out.println(m.toString()+ " "+"is not a team member.");
 		  
 	   }
        
@@ -110,13 +114,17 @@ public class Team
 	// TODO Auto-generated method stub
 	
 	   TeamMember [] dummyArray = new TeamMember[this.team.length];
-	   
-	   for(int i=0,k=0;i<dummyArray.length;i++) {
+	   int k = 0;
+	   for(int i=0;i<numMembers;i++) {
 		   
 		   if(i==mLocation)
 			   continue;
 		   
-		   dummyArray[k++]=this.team[k];
+		   dummyArray[k++]=this.team[i];
+	   }
+
+	   for(int i = k;i<this.team.length;i++){
+		   dummyArray[i] = null;
 	   }
 	   
 	   this.team=dummyArray;
@@ -125,9 +133,9 @@ public class Team
 //check if the member already exists on the team
 public boolean contains(TeamMember m)
    {
-	for(int i=0;i<this.team.length;i++) {
+	for(int i=0;i<numMembers;i++) {
 		
-		if(team[i]==m) {
+		if(team[i].equals(m)) {
 			return true;
 		}
 		
@@ -140,7 +148,8 @@ public boolean contains(TeamMember m)
       //set up a for loop and call the toString() method
 	   System.out.println("We have the following team members: ");
 	   
-	   for(int i=0;i<=numMembers;i++) {
+
+	   for(int i=0;i<numMembers;i++) {
 		   System.out.println(team[i].toString());
 	   }
    } 
