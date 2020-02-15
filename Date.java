@@ -1,7 +1,5 @@
 import java.io.IOException;
 
-import com.sun.jdi.Field;
-
 /**
   
  @author  Aayush Adhikari
@@ -14,12 +12,20 @@ public class Date
    
    public Date(String d)
    {
+	   try {
+		   
       //use StringTokenizer to parse the String and create a Date object   
       //don't really know what's up here yet
       String [] dateSplit = d.split("/");
-      this.month = dateSplit[0];
-      this.day = dateSplit[1];
-      this.year = dateSplit[2];
+      this.day = Integer.parseInt(dateSplit[1]);
+      this.month = Integer.parseInt(dateSplit[0]);
+      this.year = Integer.parseInt(dateSplit[2]);
+	   }
+	   catch (Exception e) {
+		   System.out.println("Error on the input/ Exception caught on date");
+		  e.printStackTrace();
+	   }
+      
    }
    
    public Date(Date d)
@@ -97,6 +103,16 @@ public class Date
       return (d.day==this.day&&d.month==this.month&&d.year==this.year);
    }  
 
+  
+
+   public static void main(String[] args){
+      Date testDate = new Date("02/29/2024");
+      System.out.println(testDate.isLeap());
+      
+   }
+
 }
+
+
 
 
