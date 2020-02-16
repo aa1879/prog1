@@ -61,13 +61,14 @@ public class TeamMember
 	   Date d2 = new Date("11/27/2011");
 	
       TeamMember team = new TeamMember ("Suraj", d1 );
+
       TeamMember test = new TeamMember ("Suraj",d2);
       TeamMember test1= new TeamMember ("Ayush",d2);
       System.out.println(team.getName());
       System.out.println(team.getStartDate());
       System.out.println(team.equals(test));
       System.out.println(team.equals(test1));
-      
+
       System.out.println(team.toString());
    }
 }
