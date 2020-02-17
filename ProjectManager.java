@@ -1,12 +1,13 @@
 import java.util.*;
 /**
   
- @author  
+ @author Aayush Adhikari
  */
  
 public class ProjectManager
 {
    Scanner stdin = new Scanner(System.in);
+   String [] input;
    Team cs213 = new Team();
    public void run()
    {
@@ -15,7 +16,13 @@ public class ProjectManager
       boolean done = false;
       while ( !done )
       {
-         String command = stdin.next();
+         input = stdin.nextLine().split(" ");
+
+         if(input.length!=3&&input.length!=1){
+            System.out.println("Invalid format for input");
+            continue;
+         }
+         String command = input[0];
          switch (command)  
          {   
             case "A": add();
@@ -35,11 +42,14 @@ public class ProjectManager
       //write java code before you terminate the program
    } //run()
    
+   /**  
+    * method to add a memeber to the team
+    */
    private void add()
    {
          //must check if the date is valid
-         String name = stdin.next();
-         String date = stdin.next();
+         String name = input[1];
+         String date = input[2];
          Date tryDate = new Date(date);
          if(!tryDate.isValid()){
             System.out.println(tryDate.toString()+" is not a valid date.");
@@ -57,11 +67,14 @@ public class ProjectManager
          
    }
    
+   /**  
+    * method to remove a teammmember from the team
+    */
    private void remove()
    {
       //must check if the date is valid
-         String name = stdin.next();
-         String date = stdin.next();
+         String name = input[1];
+         String date = input[2];
          Date tryDate = new Date(date);
          if(!tryDate.isValid()){
             System.out.println(tryDate.toString()+" is not a valid date.");
@@ -78,6 +91,9 @@ public class ProjectManager
 	   
    }
    
+   /**
+    * print the list of team members in the team
+    */
    private void print()
    {
       //must check if the team has 0 members. 
@@ -88,9 +104,13 @@ public class ProjectManager
       cs213.print();
    }   
 
+   /**
+    * method to print the list of team members and exit the program, run of Q command
+    */
    private void quit(){
       print();
-      System.out.println("The team is ready to go!");
+      if(!cs213.isEmpty())
+         System.out.println("The team is ready to go!");
       System.exit(0);
    }
 } //ProjectManager
