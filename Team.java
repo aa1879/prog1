@@ -1,9 +1,10 @@
-import java.util.Arrays;
 
 /**
-  
+  This is a container class that defines a team and its operations
  @author Suraj Budhathoki 
+ @Team-members: Suraj Budhathoki, Aayush Adhikari
  */
+
 public class Team 
 {
    private final int NOT_FOUND = -1;
@@ -19,10 +20,12 @@ public class Team
    }
    
    
-   /*
+   /**
     * Find the index of the member in the team
-    * returns -1 if the member does not exists on the team
+    * @param TeamMember object
+    * @return returns -1 if member is not in the team, otherwise index location of member in the team array
     */
+ 
    private int find(TeamMember m)
    {
 	   int mLocation=-1;
@@ -38,10 +41,10 @@ public class Team
        
    }
    
-   
    /*
     * Grow the team size by factor GROW_SIZE if the team capacity is full
     */
+   
    private void grow()
    {
 	   TeamMember [] growTeam = new TeamMember[this.team.length+this.GROW_SIZE];
@@ -52,18 +55,25 @@ public class Team
 	   }
 	   
 	   this.team=growTeam;
-       
-   }
+    }
    
-   /*
-    * Check if no members exists on the team;
+   
+   /**
+    * Checks if the team is empty or not
+    * @return true if empty, false if not empty
     */
+   
    public boolean isEmpty()
    {
 	   //System.out.println(team.numMembers);
        return (numMembers==0);
    }
    
+   
+   /**
+    * This method adds a TeamMember to the team
+    * @param TeamMember object
+    */
    public void add(TeamMember m)
    {     
 	   if(!contains(m)) {
@@ -85,6 +95,12 @@ public class Team
        
    }
    
+   
+   /**
+    * This method removes the given TeamMember from the existing team and prints messages accordingly
+    * @param TeamMember object
+    * @return boolean true/false
+    */
    public boolean remove(TeamMember m)
    {
 	   if(contains(m)) {
@@ -106,10 +122,12 @@ public class Team
 	   return false;
    } 
    
-   /*
-    * remove the member located at this special index
-    * Finally resize the array
+   
+   /**
+    * remove the member located at this special index and finally resize the array
+    * @param index to remove
     */
+  
    private void removeMemberAtIndex(int mLocation) {
 	// TODO Auto-generated method stub
 	
@@ -130,7 +148,13 @@ public class Team
 	   this.team=dummyArray;
    }
 
-//check if the member already exists on the team
+   
+   /**
+    * check if the member already exists on the team
+    * @param TeamMember object
+    * @return boolean true/False
+    */
+
 public boolean contains(TeamMember m)
    {
 	for(int i=0;i<numMembers;i++) {
@@ -142,7 +166,10 @@ public boolean contains(TeamMember m)
 	}
       return false;
   } 
-   
+
+   /**
+    * Method to print all the team members
+    */
    public void print()
    {
       //set up a for loop and call the toString() method
@@ -152,5 +179,6 @@ public boolean contains(TeamMember m)
 	   for(int i=0;i<numMembers;i++) {
 		   System.out.println(team[i].toString());
 	   }
+	  //System.out.println("--------End of the List----------");
    } 
 }
