@@ -15,11 +15,23 @@ public class Date
    public Date(String d)
    {
       //use StringTokenizer to parse the String and create a Date object   
-      //don't really know what's up here yet
       String [] dateSplit = d.split("/");
-      this.day = Integer.parseInt(dateSplit[1]);
-      this.month = Integer.parseInt(dateSplit[0]);
-      this.year = Integer.parseInt(dateSplit[2]);
+
+      if(dateSplit.length!=3){
+         System.out.println("The date must be in the format mm/dd/yyyy");
+         return;
+      }
+
+      // add this to a try catch
+      try{
+         
+         this.day = Integer.parseInt(dateSplit[1]);
+         this.month = Integer.parseInt(dateSplit[0]);
+         this.year = Integer.parseInt(dateSplit[2]);
+      }
+      catch(Exception e){
+         System.out.println(d+" is an invalid date.");
+      }
       
    }
    
@@ -44,34 +56,31 @@ public class Date
       return false;
    }
    
+   //checks if a date is valid
    public boolean isValid()
    {
-       if(this.month<1||this.month>12)
+      //check if it is less than or more than min or max values of days and months
+       if(this.month<1||this.month>12||this.day<1||this.day>31||year<=0)
          return false;
 
-       if(this.day>31)
-         return false;
-      
-       if(this.month%2==1){
-          return true;
+         //check for february
+       else if(this.month==2){
+            if(this.day>29)
+               return false;
+            else if(this.day==29&&isLeap()==false)
+               return false;
+            
+            return true;
        }
 
-       if(this.day>30)
+       //for all other months
+       else if(this.day>30){
+          if((month%7)%2==1)
+            return true;
          return false;
+       }
 
-       if(this.month!=2)
-         return true;
-       
-       if(this.day>29)
-         return false;
-      
-       if(isLeap()==true)
-         return true;
-
-       if(this.day>28)
-         return false;
-
-      return true;
+       return true;
        
 
    }
@@ -80,8 +89,7 @@ public class Date
    public String toString()
    {
        //use the format "month/day/year"
-       String stDate = String.format("%d/%d/%d", this.month,this.day,this.year);
-       return stDate;
+       return String.format("%d/%d/%d", this.month,this.day,this.year);
 
    }
    
@@ -101,8 +109,18 @@ public class Date
   
 
    public static void main(String[] args){
-      Date testDate = new Date("02/29/2024");
-      System.out.println(testDate.isLeap());
+      Date testDate = new Date("02/29/2020");
+      Date newDate = new Date("09/31/1995");
+      Date nextDate = new Date(testDate);
+
+      //is valid
+      System.out.println(newDate.isValid());
+      System.out.println(nextDate.isValid());
+      Date nDate = new Date("02/29/2020");
+      System.out.println(newDate.equals(nextDate));
+      System.out.println(testDate.equals(nDate));
+
+      System.out.println(nDate.toString());
       
    }
 
